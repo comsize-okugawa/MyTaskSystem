@@ -1,8 +1,9 @@
 package model.entity;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 
-public class CategoryBean {
+public class CategoryBean  implements Serializable{
 	
 	// カテゴリID
 	private int categoryId;

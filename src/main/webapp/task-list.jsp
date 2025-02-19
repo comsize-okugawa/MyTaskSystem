@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="java.util.List,model.entity.TaskBean"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,10 +8,17 @@
 </head>
 <body>
 
+<%
+List<TaskBean> taskList = (List<TaskBean>) session.getAttribute("taskList");
+%>
+
 <h1>タスク一覧表示画面</h1>
 <hr>
 <table border>
 
+<%
+for(list : taskList){
+%>
 <tr>
 <th>タスク名</th>
 <th>カテゴリ情報</th>
@@ -23,27 +30,15 @@
 <th>編集</th>
 </tr>
 <tr>
-<td>タスクA</td>
-<td>カテゴリA</td>
+<td><%=list.getTaskName()%></td>
+<td><%=list.getTaskName()%></td>
 <td>YYYY-MM-DD</td>
 <td>山田</td>
 <td>ステータスA</td>
 <td>メモA</td>
-<td><form action=""><input type="button" value="削除"></form></td>
-<td><form action=""><input type="button" value="編集"></form></td>
+<td><form action="JudgeUserDeleteServlet"><input type="button" name="delete" value="削除"></form></td>
+<td><form action="JudgeUserEditServlet"><input type="button"  name="edit" value="編集"></form></td>
 </tr>
-<tr>
-<td>タスクB</td>
-<td>カテゴリB</td>
-<td>YYYY-MM-DD</td>
-<td>田中</td>
-<td>ステータスB</td>
-<td>メモB</td>
-<td><form action=""><input type="button" value="削除"></form></td>
-<td><form action=""><input type="button" value="編集"></form></td>
-</tr>
-
-
 
 
 

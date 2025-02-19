@@ -1,8 +1,9 @@
 package model.entity;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 
-public class StatusBean {
+public class StatusBean implements Serializable{
 	
 	// ステータスコード
 	private String statusCode;
