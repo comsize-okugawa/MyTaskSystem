@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="java.util.List,model.entity.TaskBean"%>
+    pageEncoding="UTF-8" import="java.util.List,model.entity.UserStatusCategoryTaskBean"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,7 +9,7 @@
 <body>
 
 <%
-List<TaskBean> taskList = (List<TaskBean>) session.getAttribute("taskList");
+List<UserStatusCategoryTaskBean> taskList = (List<UserStatusCategoryTaskBean>) session.getAttribute("taskList");
 %>
 
 <h1>タスク一覧表示画面</h1>
@@ -32,15 +32,17 @@ for(list : taskList){
 <tr>
 <td><%=list.getTaskName()%></td>
 <td><%=list.getTaskName()%></td>
-<td>YYYY-MM-DD</td>
-<td>山田</td>
-<td>ステータスA</td>
-<td>メモA</td>
+<td><%=list.getLimitDate()%></td>
+<td><%=list.getUserName()%></td>
+<td><%=list.getStatusName()%></td>
+<td><%=list.getMemo()%></td>
 <td><form action="JudgeUserDeleteServlet"><input type="button" name="delete" value="削除"></form></td>
 <td><form action="JudgeUserEditServlet"><input type="button"  name="edit" value="編集"></form></td>
 </tr>
 
-
+<%
+}
+%>
 
 </table>
 
