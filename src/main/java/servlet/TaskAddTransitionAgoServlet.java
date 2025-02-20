@@ -44,32 +44,40 @@ public class TaskAddTransitionAgoServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
+
 		try {
-			
+
 			// TaskAddDAOのインスタンス化
 			TaskAddDAO dao = new TaskAddDAO();
 
 			/* テーブルの全レコードをListで取得し、
 			 * リクエストスコープに格納する処理 */
 			// m_user
-			UserBean userBean = new UserBean();
 			List<UserBean> userList = dao.AllSelectUser();
-			request.setAttribute("userList",userList);
+			request.setAttribute("userList", userList);
 
 			// m_category
-			CategoryBean categoryBean = new CategoryBean();
 			List<CategoryBean> categoryList = dao.AllSelectCategory();
-			request.setAttribute("categoryList",categoryList);
+			request.setAttribute("categoryList", categoryList);
 
 			// m_status
-			StatusBean statusBean = new StatusBean();
 			List<StatusBean> statusList = dao.AllSelectStatus();
-			request.setAttribute("statusList",statusList);
+			request.setAttribute("statusList", statusList);
 			
+			// デバッグ用
+			for (CategoryBean bean : categoryList) {
+				System.out.println("カテゴリID：" + bean.getCategoryId());
+				System.out.println("カテゴリ名：" + bean.getCategoryName());
+			}
+			for (UserBean bean : userList) {
+				System.out.println("ユーザーID：" + bean.getUserId());
+				System.out.println("ユーザー名：" + bean.getUserName());
+				System.out.println("パスワード：" + bean.getPassword());
+			}
+
 			// 転送処理用オブジェクトを取得とパス指定/リクエストの転送(forward)
 			request.getRequestDispatcher("task-add.jsp").forward(request, response);
-		
+
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		}

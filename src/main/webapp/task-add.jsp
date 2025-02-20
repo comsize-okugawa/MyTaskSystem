@@ -43,11 +43,11 @@
 
 				<%-- カテゴリ情報 m_category --%>
 				<td>
-					<% for (CategoryBean bean : categoryList) { %>
-						<select name="categoryId">
-							<option value="<%bean.getCategoryId();%>"><%bean.getCategoryName();%></option>
-						</select>
-					<% }%>
+					<select name="categoryId">
+						<% for (CategoryBean bean : categoryList) { %>
+							<option value="<%=bean.getCategoryId()%>"><%=bean.getCategoryName()%></option>
+						<% } %>
+					</select>
 				</td>
 
 				<%-- 期限 --%>
@@ -55,20 +55,20 @@
 
 				<%-- 担当者情報 m_user --%>
 				<td>
-					<% for (UserBean bean : userList) { %>
-						<select name="userId">
-							<option value="<%bean.getUserId();%>"><%bean.getUserName();%></option>
-						</select>
-					<% }%>
+					<select name="userId">
+						<% for (UserBean bean : userList) { %>
+							<option value="<%=bean.getUserId()%>"><%=bean.getUserName()%></option>
+						<% }%>
+					</select>
 				</td>
 
 				<%-- ステータス情報 m_status --%>
 				<td>
-					<% for (StatusBean bean : statusList) { %>
-						<select name="statusId">
-							<option value="<%bean.getStatusCode();%>"><%bean.getStatusName();%></option>
-						</select>
-					<% }%>
+					<select name="statusId">
+						<% for (StatusBean bean : statusList) { %>
+							<option value="<%=bean.getStatusCode()%>"><%=bean.getStatusName()%></option>
+						<% }%>
+					</select>
 				</td>
 
 				<%-- メモ --%>
