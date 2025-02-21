@@ -1,6 +1,7 @@
 package servlet;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -47,10 +48,14 @@ public class TaskListServlet extends HttpServlet {
 		List<UserStatusCategoryTaskBean> taskList = null;
 
 		//	DAOの生成
-		TaskDAO dao = new TaskDAO();
+		TaskDAO taskdao = new TaskDAO();
 
 		//	タスクマスタからタスク情報を取得
-		taskList = dao.taskList();
+		try {
+			taskList = taskdao.taskList();
+		} catch (ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+		}
 
 		//	リクエストスコープへの属性設定
 		request.setAttribute("taskList", taskList);
