@@ -2,6 +2,7 @@ package model.entity;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
+import java.time.LocalDate;
 
 public class TaskBean implements Serializable {
 
@@ -15,7 +16,7 @@ public class TaskBean implements Serializable {
 	private int categoryId;
 
 	//期限
-	private String limitDate;
+	private LocalDate limitDate;
 
 	//ユーザID
 	private String userId;
@@ -61,11 +62,11 @@ public class TaskBean implements Serializable {
 	}
 
 	// Date→Stringにいったん変えた
-	public String getLimitDate() {
+	public LocalDate getLimitDate() {
 		return limitDate;
 	}
 
-	public void setLimitDate(String limitDate) {
+	public void setLimitDate(LocalDate limitDate) {
 		this.limitDate = limitDate;
 	}
 

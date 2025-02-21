@@ -63,17 +63,6 @@ public class TaskAddTransitionAgoServlet extends HttpServlet {
 			// m_status
 			List<StatusBean> statusList = dao.AllSelectStatus();
 			request.setAttribute("statusList", statusList);
-			
-			// デバッグ用
-			for (CategoryBean bean : categoryList) {
-				System.out.println("カテゴリID：" + bean.getCategoryId());
-				System.out.println("カテゴリ名：" + bean.getCategoryName());
-			}
-			for (UserBean bean : userList) {
-				System.out.println("ユーザーID：" + bean.getUserId());
-				System.out.println("ユーザー名：" + bean.getUserName());
-				System.out.println("パスワード：" + bean.getPassword());
-			}
 
 			// 転送処理用オブジェクトを取得とパス指定/リクエストの転送(forward)
 			request.getRequestDispatcher("task-add.jsp").forward(request, response);

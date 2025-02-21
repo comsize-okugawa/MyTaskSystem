@@ -51,7 +51,7 @@
 				</td>
 
 				<%-- 期限 --%>
-				<td><input type="text" name="limitDate"></td>
+				<td><input type="date" name="limitDate"></td>
 
 				<%-- 担当者情報 m_user --%>
 				<td>
@@ -64,7 +64,7 @@
 
 				<%-- ステータス情報 m_status --%>
 				<td>
-					<select name="statusId">
+					<select name="statusCode">
 						<% for (StatusBean bean : statusList) { %>
 							<option value="<%=bean.getStatusCode()%>"><%=bean.getStatusName()%></option>
 						<% }%>

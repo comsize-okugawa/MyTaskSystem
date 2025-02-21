@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,8 +31,9 @@ public class TaskAddDAO {
 
 			// 各カラムの値を変数に入れる
 			String taskName = taskBean.getTaskName(); // タスク名
-			int categoryId = taskBean.getTaskId(); // カテゴリID
-			String date = taskBean.getLimitDate(); // 期限
+			int categoryId = taskBean.getCategoryId(); // カテゴリID
+			LocalDate localDate = taskBean.getLimitDate(); // 期限
+				java.sql.Date date = java.sql.Date.valueOf(localDate); // かたへんかん
 			String userId = taskBean.getUserId(); // ユーザID
 			String statusCode = taskBean.getStatusCode(); // ステータスコード
 			String memo = taskBean.getMemo(); // ステータスコード
@@ -39,7 +41,7 @@ public class TaskAddDAO {
 			// 各カラムの値をプレースホルダに設定
 			pstmt.setString(1, taskName); // タスク名
 			pstmt.setInt(2, categoryId); // カテゴリID
-			pstmt.setString(3, date); // 期限
+			pstmt.setDate(3, date); // 期限
 			pstmt.setString(4, userId); // ユーザID
 			pstmt.setString(5, statusCode); // ステータスコード
 			pstmt.setString(6, memo); // メモ	

@@ -2,6 +2,7 @@ package servlet;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.time.LocalDate;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -50,9 +51,10 @@ public class TaskAddServlet extends HttpServlet {
 
 			// リクエストパラメーターから値を取得
 			String taskName = request.getParameter("taskName"); // タスク名
-			String strCategoryId = request.getParameter("categoryId"); // カテゴリID IDだけ送られてくる
-				int categoryId = Integer.parseInt(strCategoryId); // カテゴリID 型変換
-			String limitDate = request.getParameter("limitDate"); // 期限
+			String strCategoryId = request.getParameter("categoryId"); // カテゴリID IDだけ送られてくる			
+				int categoryId = Integer.parseInt(strCategoryId); // 型変換
+			String strLimitDate = request.getParameter("limitDate"); // 期限
+				LocalDate limitDate = LocalDate.parse(strLimitDate); // 型変換（LocalDate型）
 			String userId = request.getParameter("userId"); // ユーザID IDだけ送られてくる
 			String statusCode = request.getParameter("statusCode"); // ステータスコード Codeだけ送られてくる
 			String memo = request.getParameter("memo"); // メモ
