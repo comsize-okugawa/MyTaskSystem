@@ -16,7 +16,7 @@
 	</form>
 	
 	<%-- form 一覧表示 --%>
-	<form action="" method="POST">
+	<form action="TaskListServlet" method="POST">
 		<input type="submit" value="タスク一覧">
 	</form><br>
 
