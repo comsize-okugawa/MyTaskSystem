@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import model.dao.TaskAddDAO;
+import model.dao.TaskAddEditDAO;
 import model.entity.CategoryBean;
 import model.entity.StatusBean;
 import model.entity.UserBean;
@@ -48,7 +48,7 @@ public class TaskAddTransitionAgoServlet extends HttpServlet {
 		try {
 
 			// TaskAddDAOのインスタンス化
-			TaskAddDAO dao = new TaskAddDAO();
+			TaskAddEditDAO dao = new TaskAddEditDAO();
 
 			/* テーブルの全レコードをListで取得し、
 			 * リクエストスコープに格納する処理 */

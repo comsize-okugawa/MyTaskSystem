@@ -14,16 +14,16 @@ import model.dao.TaskAddEditDAO;
 import model.entity.TaskBean;
 
 /**
- * Servlet implementation class TaskAddServlet
+ * Servlet implementation class TaskEditServlet
  */
-@WebServlet("/task-add-servlet")
-public class TaskAddServlet extends HttpServlet {
+@WebServlet("/task-edit-servlet")
+public class TaskEditServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public TaskAddServlet() {
+	public TaskEditServlet() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -42,7 +42,6 @@ public class TaskAddServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
 		// try-catch
 		try {
 
@@ -52,16 +51,16 @@ public class TaskAddServlet extends HttpServlet {
 			// リクエストパラメーターから値を取得
 			String taskName = request.getParameter("taskName"); // タスク名
 			String strCategoryId = request.getParameter("categoryId"); // カテゴリID IDだけ送られてくる			
-				int categoryId = Integer.parseInt(strCategoryId); // 型変換
+			int categoryId = Integer.parseInt(strCategoryId); // 型変換
 			String strLimitDate = request.getParameter("limitDate"); // 期限
-				LocalDate limitDate = LocalDate.parse(strLimitDate); // 型変換（LocalDate型）
+			LocalDate limitDate = LocalDate.parse(strLimitDate); // 型変換（LocalDate型）
 			String userId = request.getParameter("userId"); // ユーザID IDだけ送られてくる
 			String statusCode = request.getParameter("statusCode"); // ステータスコード Codeだけ送られてくる
 			String memo = request.getParameter("memo"); // メモ
-						
+
 			// TaskBean インスタンス化
-			TaskBean taskBean = new TaskBean(); 
-			
+			TaskBean taskBean = new TaskBean();
+
 			// taskBeanに取得した値を設定
 			taskBean.setTaskName(taskName); // タスク名
 			taskBean.setCategoryId(categoryId); // カテゴリID
@@ -69,26 +68,24 @@ public class TaskAddServlet extends HttpServlet {
 			taskBean.setUserId(userId); // ユーザID
 			taskBean.setStatusCode(statusCode); // ステータスコード
 			taskBean.setMemo(memo); // メモ
-			
+
 			// TaskAddDAO インスタンス化
 			TaskAddEditDAO taskAddDao = new TaskAddEditDAO();
 
 			// 登録処理のメソッド
 			int count = taskAddDao.taskAdd(taskBean);
-			
 
 			// パス指定して転送処理用オブジェクトを取得/転送
 			request.getRequestDispatcher("task-add-success.jsp").forward(request, response);
 
 			// String型→Date型への型変換
-//		} catch (ParseException e) {
-//			e.printStackTrace();
+			//				} catch (ParseException e) {
+			//					e.printStackTrace();
 
 			// 登録処理メソッドの例外処理
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		}
-
 	}
 
 }
