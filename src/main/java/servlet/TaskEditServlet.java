@@ -51,36 +51,36 @@ public class TaskEditServlet extends HttpServlet {
 			// リクエストパラメーターから値を取得
 			String taskName = request.getParameter("taskName"); // タスク名
 			String strCategoryId = request.getParameter("categoryId"); // カテゴリID IDだけ送られてくる			
-			int categoryId = Integer.parseInt(strCategoryId); // 型変換
+				int categoryId = Integer.parseInt(strCategoryId); // 型変換
 			String strLimitDate = request.getParameter("limitDate"); // 期限
-			LocalDate limitDate = LocalDate.parse(strLimitDate); // 型変換（LocalDate型）
+				LocalDate limitDate = LocalDate.parse(strLimitDate); // 型変換（LocalDate型）
 			String userId = request.getParameter("userId"); // ユーザID IDだけ送られてくる
 			String statusCode = request.getParameter("statusCode"); // ステータスコード Codeだけ送られてくる
 			String memo = request.getParameter("memo"); // メモ
 
 			// TaskBean インスタンス化
-			TaskBean taskBean = new TaskBean();
+			TaskBean taskBeanAfter = new TaskBean();
 
 			// taskBeanに取得した値を設定
-			taskBean.setTaskName(taskName); // タスク名
-			taskBean.setCategoryId(categoryId); // カテゴリID
-			taskBean.setLimitDate(limitDate); // 期限
-			taskBean.setUserId(userId); // ユーザID
-			taskBean.setStatusCode(statusCode); // ステータスコード
-			taskBean.setMemo(memo); // メモ
-
-			// TaskAddDAO インスタンス化
-			TaskAddEditDAO taskAddDao = new TaskAddEditDAO();
-
-			// 登録処理のメソッド
-			int count = taskAddDao.taskAdd(taskBean);
+			taskBeanAfter.setTaskName(taskName); // タスク名
+			taskBeanAfter.setCategoryId(categoryId); // カテゴリID
+			taskBeanAfter.setLimitDate(limitDate); // 期限
+			taskBeanAfter.setUserId(userId); // ユーザID
+			taskBeanAfter.setStatusCode(statusCode); // ステータスコード
+			taskBeanAfter.setMemo(memo); // メモ
+			
+			// インスタンス化
+			TaskAddEditDAO taskEditDao = new TaskAddEditDAO();
+			
+			// 編集処理のメソッド
+			int count = taskEditDao.taskEdit(taskBeanAfter);
 
 			// パス指定して転送処理用オブジェクトを取得/転送
-			request.getRequestDispatcher("task-add-success.jsp").forward(request, response);
-
-			// String型→Date型への型変換
-			//				} catch (ParseException e) {
-			//					e.printStackTrace();
+			if(count == 1) {
+				request.getRequestDispatcher("task-edit-success.jsp").forward(request, response);
+			}else {
+				request.getRequestDispatcher("task-edit-failure.jsp").forward(request, response);
+			}
 
 			// 登録処理メソッドの例外処理
 		} catch (ClassNotFoundException | SQLException e) {

@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" import="java.util.List, model.entity.CategoryBean, model.entity.StatusBean, model.entity.UserBean"%>
+	pageEncoding="UTF-8" import="java.util.List, model.entity.CategoryBean, model.entity.StatusBean, model.entity.UserBean, model.dao.TaskAddEditDAO, model.entity.TaskBean"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,9 +10,15 @@
 
 	<%-- 前準備 --%>
 	<%
+	// 各beanの取得
 	List<UserBean> userList = (List<UserBean>) request.getAttribute("userList");
 	List<CategoryBean> categoryList = (List<CategoryBean>) request.getAttribute("categoryList");
 	List<StatusBean> statusList = (List<StatusBean>) request.getAttribute("statusList");
+	// taskIdの取得
+	Integer taskId = (Integer)session.getAttribute("taskId");
+	// taskIdをもとにレコードを取得
+	TaskAddEditDAO taskAddEditDao = new TaskAddEditDAO();
+	TaskBean taskBeanBefore = taskAddEditDao.SelectTask(taskId);
 	%>
 
 	<h1>タスク編集画面</h1>
@@ -39,34 +45,76 @@
 			<%-- 入力欄 --%>
 			<tr>
 				<%-- タスク名 --%>
-				<td><input type="text" name="taskName"></td>
+				<td><input type="text" name="taskName" value="<%=taskBeanBefore.getTaskName()%>"></td>
 
 				<%-- カテゴリ情報 m_category --%>
 				<td><select name="categoryId">
-						<% for (CategoryBean bean : categoryList) { %>
-						<option value="<%=bean.getCategoryId()%>"><%=bean.getCategoryName()%></option>
-						<% } %>
+						<% 
+						for (CategoryBean list : categoryList) { 
+							if(list.getCategoryId() == taskBeanBefore.getCategoryId()){
+						%>
+							<option value="<%=list.getCategoryId()%>" selected>
+								<%=list.getCategoryName()%>
+							</option>
+						<% 
+							}else{
+						%>
+							<option value="<%=list.getCategoryId()%>">
+								<%=list.getCategoryName()%>
+							</option>
+						<% 
+							} 
+						}
+						%>
 				</select></td>
 
 				<%-- 期限 --%>
-				<td><input type="date" name="limitDate"></td>
+				<td><input type="date" name="limitDate" value="<%=taskBeanBefore.getLimitDate()%>"></td>
 
 				<%-- 担当者情報 m_user --%>
 				<td><select name="userId">
-						<% for (UserBean bean : userList) { %>
-						<option value="<%=bean.getUserId()%>"><%=bean.getUserName()%></option>
-						<% }%>
+						<% 
+						for (UserBean list : userList) { 
+							if(list.getUserId() == taskBeanBefore.getUserId()){
+						%>
+							<option value="<%=list.getUserId()%>" selected>
+								<%=list.getUserName()%>
+							</option>
+						<%
+							}else{
+						%>
+							<option value="<%=list.getUserId()%>">
+								<%=list.getUserName()%>
+							</option>
+						<% 
+							}
+						}
+						%>
 				</select></td>
 
 				<%-- ステータス情報 m_status --%>
 				<td><select name="statusCode">
-						<% for (StatusBean bean : statusList) { %>
-						<option value="<%=bean.getStatusCode()%>"><%=bean.getStatusName()%></option>
-						<% }%>
+						<% 
+						for (StatusBean list : statusList) { 
+							if(list.getStatusCode().equals(taskBeanBefore.getStatusCode())){
+						%>
+							<option value="<%=list.getStatusCode()%>" selected>
+								<%=list.getStatusName()%>
+							</option>
+						<%
+							}else{
+						%>
+							<option value="<%=list.getStatusCode()%>" selected>
+								<%=list.getStatusName()%>
+							</option>
+						<% 
+							}
+						}
+						%>
 				</select></td>
 
 				<%-- メモ --%>
-				<td><input type="textarea" name="memo"></td>
+				<td><input type="textarea" name="memo" value="<%=taskBeanBefore.getMemo()%>"></td>
 			</tr>
 
 		</table>
@@ -75,7 +123,7 @@
 		<%-- table 送信/リセットボタン --%>
 		<table>
 			<tr>
-				<th><input type="submit" value="登録"></th>
+				<th><input type="submit" value="編集"></th>
 				<th><input type="reset" value="リセット"></th>
 				<th>
 			</tr>

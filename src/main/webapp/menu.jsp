@@ -24,6 +24,17 @@
 	<form action="" method="POST">
 		<input type="submit" value="ログアウト">
 	</form>
+	
+<%-- テスト用 編集/削除 --%>
+<hr>
+編集/削除テスト用
+<form action="judge-user-edit-servlet" method="POST">
+	<input type="submit" value="タスク編集">
+</form>
+<form action="JudgeUserDeleteServlet" method="POST">
+	<input type="submit" value="タスク削除">
+</form>
+
 
 </body>
 </html>
