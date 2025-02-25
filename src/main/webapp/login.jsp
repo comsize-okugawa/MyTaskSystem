@@ -10,28 +10,38 @@
 
 	<h1>ログイン画面</h1>
 	<hr>
+	<%--　エラー時メッセージ出力 --%>
+		<% String message = (String)request.getAttribute("message"); 
+			if(message != null){
+		%>
+		
+		<%= message %>
+		
+		<% }
+		%>
+		<%= message %>
+		
+		<h3>ユーザIDとパスワードを入力してください</h3>
+		<%-- 入力欄 --%>
+		<form action="LoginServlet" method="POST">
 
-	<h3>ユーザIDとパスワードを入力してください</h3>
+			<table>
 
-	<form action="LoginServlet" method="POST">
+				<tr>
+					<th>ユーザID</th>
+					<td><input type="text" name=userId></td>
+				</tr>
+				<tr>
+					<th>パスワード</th>
+					<td><input type="text" name=password></td>
+				</tr>
 
-		<table>
-
-			<tr>
-				<th>ユーザID</th>
-				<td><input type="text" name=userId></td>
-			</tr>
-			<tr>
-				<th>パスワード</th>
-				<td><input type="text" name=password></td>
-			</tr>
-
-			<tr>
-				<td><input type="submit" value="ログイン"></td>
-				<td><input type="reset" value="リセット"></td>
-			<tr>
-		</table>
-	</form>
-
+				<tr>
+					<td><input type="submit" value="ログイン"></td>
+					<td><input type="reset" value="リセット"></td>
+				<tr>
+			</table>
+		</form>
+		
 </body>
 </html>
