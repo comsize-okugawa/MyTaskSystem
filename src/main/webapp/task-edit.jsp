@@ -11,11 +11,11 @@
 	<%-- 前準備 --%>
 	<%
 	// 各beanの取得
-	List<UserBean> userList = (List<UserBean>) request.getAttribute("userList");
-	List<CategoryBean> categoryList = (List<CategoryBean>) request.getAttribute("categoryList");
-	List<StatusBean> statusList = (List<StatusBean>) request.getAttribute("statusList");
+	List<UserBean> userList = (List<UserBean>) session.getAttribute("userList");
+	List<CategoryBean> categoryList = (List<CategoryBean>) session.getAttribute("categoryList");
+	List<StatusBean> statusList = (List<StatusBean>) session.getAttribute("statusList");
 	// taskIdの取得
-	Integer taskId = (Integer)session.getAttribute("taskId");
+	Integer taskId = (Integer) session.getAttribute("taskId");
 	// taskIdをもとにレコードを取得
 	TaskAddEditDAO taskAddEditDao = new TaskAddEditDAO();
 	TaskBean taskBeanBefore = taskAddEditDao.SelectTask(taskId);
