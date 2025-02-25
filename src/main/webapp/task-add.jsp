@@ -73,8 +73,7 @@
 
 				<%-- メモ --%>
 				<td>
-					<textarea name="memo">
-					</textarea>
+					<textarea name="memo"></textarea>
 				</td>
 			</tr>
 

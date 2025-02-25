@@ -115,9 +115,7 @@
 
 				<%-- メモ --%>
 				<td>
-					<textarea name="memo">
-						<%=taskBeanBefore.getMemo()%>
-					</textarea>
+					<textarea name="memo"><%=taskBeanBefore.getMemo()%></textarea>
 				</td>
 			</tr>
 

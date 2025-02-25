@@ -25,7 +25,6 @@
 				<th>パスワード</th>
 				<td><input type="text" name=password></td>
 			</tr>
-
 			<tr>
 				<td><input type="submit" value="ログイン"></td>
 				<td><input type="reset" value="リセット"></td>
