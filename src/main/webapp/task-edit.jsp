@@ -114,7 +114,11 @@
 				</select></td>
 
 				<%-- メモ --%>
-				<td><input type="textarea" name="memo" value="<%=taskBeanBefore.getMemo()%>"></td>
+				<td>
+					<textarea name="memo">
+						<%=taskBeanBefore.getMemo()%>
+					</textarea>
+				</td>
 			</tr>
 
 		</table>
