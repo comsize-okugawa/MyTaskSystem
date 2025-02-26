@@ -39,53 +39,58 @@ public class LoginServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-//		遷移先指定用
+//		遷移先指定	エラー時は再度login.jspへ
 		String url = "login.jsp";
+		
+//		エラーメッセージ初期化
 		String message = null;
 		
-		String userId = request.getParameter("userId");
-		String password = request.getParameter("password");
+//		ユーザIDとパスワード初期化
+		String userId = null;
+		String password = null;
 		
-		
+//		ユーザIDとパスワードをパラメータから取得
+		 userId = request.getParameter("userId");
+		 password = request.getParameter("password");
+		 
 
-        if (userId == null || userId.isEmpty()) {
-            if (password == null || password.isEmpty()) {
-            	
+//		入力チェック
+        if (userId == null) {
+        	
+            if (password == null) {
                 message = "ユーザIDとパスワードが未入力です";
-				request.setAttribute("message",message);
-				
+                
             } else {
-            	
                 message = "ユーザIDが未入力です";
-                request.setAttribute("message",message);
                 
             }
-        } else if (password == null || password.isEmpty()) {
-        	
+			request.setAttribute("message",message);
+			
+        } else if (password == null) {
             message = "パスワードが未入力です";
 			request.setAttribute("message",message);
-        
+
         } else {
+        	
 			try {
-				
+//				ユーザ認証
 				UserDAO userDao = new UserDAO();
 				UserBean userBean = userDao.login(userId, password );
 				
 				if(userBean != null) {
-					
+//					成功時menu.jspへ
 					url = "menu.jsp";
 			
 				} else {
-					
 					message = "ログイン認証に失敗しました";
 					request.setAttribute("message",message);
 			
 				}
 			} catch (SQLException | ClassNotFoundException e){
 			e.printStackTrace();
+			}
 		}
-            RequestDispatcher rd = request.getRequestDispatcher(url);
-            rd.forward(request, response);
-		}
+        RequestDispatcher rd = request.getRequestDispatcher(url);
+        rd.forward(request, response);
 	}
 }
