@@ -27,6 +27,7 @@
 
 			<table>
 
+<<<<<<< HEAD
 				<tr>
 					<th>ユーザID</th>
 					<td><input type="text" name=userId></td>
@@ -35,6 +36,26 @@
 					<th>パスワード</th>
 					<td><input type="text" name=password></td>
 				</tr>
+=======
+	<form action="LoginServlet" method="POST">
+
+		<table>
+
+			<tr>
+				<th>ユーザID</th>
+				<td><input type="text" name=userId></td>
+			</tr>
+			<tr>
+				<th>パスワード</th>
+				<td><input type="text" name=password></td>
+			</tr>
+			<tr>
+				<td><input type="submit" value="ログイン"></td>
+				<td><input type="reset" value="リセット"></td>
+			<tr>
+		</table>
+	</form>
+>>>>>>> 54bf2d953f787c830466c0b15d6ca687ba5b766b
 
 				<tr>
 					<td><input type="submit" value="ログイン"></td>
