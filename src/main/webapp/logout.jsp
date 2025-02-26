@@ -9,7 +9,21 @@
 <body>
 <h1>ログアウト画面</h1>
 
-<%= if((request.getAttribute("message")) %>
+<% String message = (String)request.getAttribute("message"); 
+	if(message != null){
+%>
+
+<%= message
+%>
+
+<% 
+	} else {
+%>
+	ログアウト済です
+	
+<% }
+%>
+
 
 <form action = "login.jsp" method = "POST">
 <input type = "submit" value = "ログイン画面へ">

@@ -39,29 +39,53 @@ public class LoginServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String url = null;
-		String comment = null;
+//		遷移先指定用
+		String url = "login.jsp";
+		String message = null;
 		
 		String userId = request.getParameter("userId");
 		String password = request.getParameter("password");
 		
-		try {
-			
-			UserDAO userDao = new UserDAO();
-			UserBean userBean = userDao.login(userId, password );
-			
-			if(userBean != null) {
-				url = "menu.jsp";
-			} else {
-				comment = "ログイン認証に失敗しました";
-				url = "login.jsp";
-				request.setAttribute(comment,comment);
 		
-			}
-		} catch (SQLException | ClassNotFoundException e){
+
+        if (userId == null || userId.isEmpty()) {
+            if (password == null || password.isEmpty()) {
+            	
+                message = "ユーザIDとパスワードが未入力です";
+				request.setAttribute("message",message);
+				
+            } else {
+            	
+                message = "ユーザIDが未入力です";
+                request.setAttribute("message",message);
+                
+            }
+        } else if (password == null || password.isEmpty()) {
+        	
+            message = "パスワードが未入力です";
+			request.setAttribute("message",message);
+        
+        } else {
+			try {
+				
+				UserDAO userDao = new UserDAO();
+				UserBean userBean = userDao.login(userId, password );
+				
+				if(userBean != null) {
+					
+					url = "menu.jsp";
+			
+				} else {
+					
+					message = "ログイン認証に失敗しました";
+					request.setAttribute("message",message);
+			
+				}
+			} catch (SQLException | ClassNotFoundException e){
 			e.printStackTrace();
 		}
             RequestDispatcher rd = request.getRequestDispatcher(url);
             rd.forward(request, response);
 		}
 	}
+}

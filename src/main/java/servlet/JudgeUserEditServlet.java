@@ -73,16 +73,21 @@ public class JudgeUserEditServlet extends HttpServlet {
 				 * リクエストスコープに格納する処理 */
 				// m_user
 				List<UserBean> userList = dao.AllSelectUser();
-				session.setAttribute("userList", userList);
+				request.setAttribute("userList", userList);
 
 				// m_category
 				List<CategoryBean> categoryList = dao.AllSelectCategory();
-				session.setAttribute("categoryList", categoryList);
+				request.setAttribute("categoryList", categoryList);
 
 				// m_status
 				List<StatusBean> statusList = dao.AllSelectStatus();
+<<<<<<< HEAD
 				session.setAttribute("statusList", statusList);
 
+=======
+				request.setAttribute("statusList", statusList);
+				
+>>>>>>> 915599172a18bf3aa805417eb20b77368a2bf630
 				// 編集画面に遷移
 				request.getRequestDispatcher("task-edit.jsp").forward(request, response);
 
@@ -92,7 +97,6 @@ public class JudgeUserEditServlet extends HttpServlet {
 			}
 
 		} catch (ClassNotFoundException | SQLException e) {
-			System.out.println("これはなんじゃ");
 			e.printStackTrace();
 		}
 	}
