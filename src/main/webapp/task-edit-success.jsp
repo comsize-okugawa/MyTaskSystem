@@ -19,7 +19,7 @@
 
 	<%-- セッションスコープを無効化（taskId, 各Bean --%>
 	<%
-	session.invalidate();
+		session.invalidate();
 	%>
 
 </body>

@@ -14,7 +14,7 @@
 	<form action="task-add-transition-ago-servlet" method="POST">
 		<input type="submit" value="タスク登録">
 	</form>
-	
+
 	<%-- form 一覧表示 --%>
 	<form action="TaskListServlet" method="POST">
 		<input type="submit" value="タスク一覧">
@@ -24,7 +24,7 @@
 	<form action="LogoutServlet" method="POST">
 		<input type="submit" value="ログアウト">
 	</form>
-	
+
 <%-- テスト用 編集/削除 --%>
 <hr>
 編集/削除テスト用

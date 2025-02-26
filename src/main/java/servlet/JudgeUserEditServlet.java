@@ -82,10 +82,10 @@ public class JudgeUserEditServlet extends HttpServlet {
 				// m_status
 				List<StatusBean> statusList = dao.AllSelectStatus();
 				session.setAttribute("statusList", statusList);
-				
+
 				// 編集画面に遷移
 				request.getRequestDispatcher("task-edit.jsp").forward(request, response);
-				
+
 			} else {
 				// エラー画面に遷移
 				request.getRequestDispatcher("task-edit-error.jsp").forward(request, response);
@@ -96,5 +96,4 @@ public class JudgeUserEditServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 	}
-
 }

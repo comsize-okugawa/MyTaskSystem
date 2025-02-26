@@ -258,8 +258,6 @@ public class TaskAddEditDAO {
 	}
 
 	// テーブルにあるすべてのレコードを取得 m_user
-
-	// テーブルにあるすべてのレコードを取得 m_user
 	public List<UserBean> AllSelectUser() throws ClassNotFoundException, SQLException {
 
 		// return用
@@ -297,7 +295,6 @@ public class TaskAddEditDAO {
 
 	}
 	
-
 	// テーブルにあるすべてのレコードを取得 m_category
 	public List<CategoryBean> AllSelectCategory() throws ClassNotFoundException, SQLException {
 
