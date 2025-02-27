@@ -9,7 +9,8 @@ int res = (int) request.getAttribute("res");
 <meta charset="UTF-8">
 <title>削除完了画面</title>
 </head>
-<body></body>
+<body>
+	<%=res%>
 	<h1>タスク削除</h1>
 	<hr>
 	<h1>以下のタスクを削除しました</h1>
