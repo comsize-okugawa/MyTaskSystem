@@ -42,13 +42,18 @@ public class TaskDeleteServlet extends HttpServlet {
 		
 		TaskBean bean = new TaskBean();
 		DeleteDAO dao = new DeleteDAO();
-		bean.setTaskId(8);
+		bean.setTaskId(12);
+		
 		
 		int res = dao.Delete(bean);
 		
+		dao.DeleteCheck(bean);
+		
+		
 		if(res == 0) {
+			
 			RequestDispatcher rd = request.getRequestDispatcher("task-delete-failure.jsp");
-
+			
 			rd.forward(request, response);
 		}
 		request.setAttribute("res", res);
