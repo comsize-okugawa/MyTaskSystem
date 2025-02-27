@@ -21,11 +21,11 @@ public class JudgeUserDAO {
 
 			int taskId = bean.getTaskId();
 			//テスト
-			System.out.println("taskId" + taskId);
+			System.out.println("DAOtaskId:" + taskId);
 
 			String userId = bean.getUserId();
 			//テスト
-			System.out.println("userId" + userId);
+			System.out.println("DAOuserId:" + userId);
 
 			pstmt.setInt(1, taskId);
 
@@ -36,9 +36,9 @@ public class JudgeUserDAO {
 			}
 			
 			//テスト
-			System.out.println(user_id);
+			System.out.println("DAO:"+user_id);
 			
-			if (userId == user_id) {
+			if (userId.equals(user_id)) {
 				result = 1;
 			}
 
