@@ -16,7 +16,7 @@ public class ConnectionManager {
 	/**
 	 * パスワード
 	 */
-	private final static String PASSWORD = "mysql";
+	private final static String PASSWORD = "root";
 
 	/**
 	 * データベースへの接続を取得して返します。

@@ -64,5 +64,4 @@ public class TaskListServlet extends HttpServlet {
 		RequestDispatcher rd = request.getRequestDispatcher("task-list.jsp");
 		rd.forward(request, response);
 	}
-
 }

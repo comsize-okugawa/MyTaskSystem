@@ -29,22 +29,7 @@ public class TaskDAO {
 		List<UserStatusCategoryTaskBean> taskList = new ArrayList<UserStatusCategoryTaskBean>();
 
 		// sql文
-		String sql = "SELECT * FROM m_categorySELECT * FROM  t_task t  LEFT OUTER JOIN m_status s ON t.update_datetime = s.update_datetime LEFT OUTER JOIN m_category c ON t.update_datetime = c.update_datetime LEFT OUTER JOIN m_user u ON t.update_datetime = u.update_datetime;";
-
-		/*
-		sql文
-		
-		SELECT
-		 *
-		FROM
-		 t_task t
-		LEFT OUTER JOIN m_status s
-		ON t.update_datetime = s.update_datetime
-		LEFT OUTER JOIN m_category c
-		ON t.update_datetime = c.update_datetime
-		LEFT OUTER JOIN m_user u
-		ON t.update_datetime = u.update_datetime;
-		 */
+		String sql = "SELECT t.task_name, c.category_name, t.limit_date, u.user_name, s.status_name, t.memo FROM t_task t JOIN m_category c ON t.category_id = c.category_id JOIN m_status s ON t.status_code = s.status_code JOIN m_user u ON t.user_id = u.user_id;";
 
 		// DB接続とSQL文の設定
 		try (Connection con = ConnectionManager.getConnection();

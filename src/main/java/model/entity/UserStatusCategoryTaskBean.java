@@ -50,7 +50,6 @@ public class UserStatusCategoryTaskBean implements Serializable {
 	}
 
 	//	getter／setter
-
 	public String getUserId() {
 		return userId;
 	}

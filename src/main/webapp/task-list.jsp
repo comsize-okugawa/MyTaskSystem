@@ -9,12 +9,12 @@
 <body>
 
 <%
-List<UserStatusCategoryTaskBean> taskList = (List<UserStatusCategoryTaskBean>)session.getAttribute("taskList");
+List<UserStatusCategoryTaskBean> taskList = (List<UserStatusCategoryTaskBean>)request.getAttribute("taskList");
 %>
 
 <h1>タスク一覧表示画面</h1>
 <hr>
-<table border>
+<table border=1>
 
 <%
 for(UserStatusCategoryTaskBean list : taskList){
