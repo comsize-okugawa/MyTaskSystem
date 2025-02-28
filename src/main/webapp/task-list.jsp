@@ -16,9 +16,7 @@ List<UserStatusCategoryTaskBean> taskList = (List<UserStatusCategoryTaskBean>)re
 <hr>
 <table border=1>
 
-<%
-for(UserStatusCategoryTaskBean list : taskList){
-%>
+
 <tr>
 <th>タスク名</th>
 <th>カテゴリ情報</th>
@@ -29,6 +27,9 @@ for(UserStatusCategoryTaskBean list : taskList){
 <th>削除</th>
 <th>編集</th>
 </tr>
+<%
+for(UserStatusCategoryTaskBean list : taskList){
+%>
 <tr>
 <td><%=list.getTaskName()%></td>
 <td><%=list.getCategoryName()%></td>

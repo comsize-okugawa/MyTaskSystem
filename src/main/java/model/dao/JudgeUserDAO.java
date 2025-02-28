@@ -17,12 +17,12 @@ public class JudgeUserDAO {
 		try (Connection con = ConnectionManager.getConnection();
 				PreparedStatement pstmt = con
 						.prepareStatement(
-								"SELECT user_id FROM test_task WHERE task_id = ?")) {
+								"SELECT user_id FROM t_task WHERE task_id = ?")) {
 
-			int taskId = bean.getTaskId();
+			int taskId = bean.getTaskId(); // 選択中のタスクのtaskIdを取得
 			//テスト
 			System.out.println("taskId" + taskId);
-			String userId = bean.getUserId();
+			String userId = bean.getUserId(); // 
 			 
 			System.out.println("userId" + userId);
 
