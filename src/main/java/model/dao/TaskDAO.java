@@ -1,10 +1,10 @@
 package model.dao;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,7 +43,8 @@ public class TaskDAO {
 				// カーソルのある表（sql）から値を受け取る
 				String taskName = res.getString("task_name");
 				String categoryName = res.getString("category_name");
-				Date limitDate = res.getDate("limit_date");
+				String strLimitDate = res.getString("limit_date");
+					LocalDate limitDate = LocalDate.parse(strLimitDate); // 型変換
 				String userName = res.getString("user_name");
 				String statusName = res.getString("status_name");
 				String memo = res.getString("memo");
@@ -64,7 +65,6 @@ public class TaskDAO {
 				
 				userStatusCategoryTaskBean.setTaskId(taskId);
 				userStatusCategoryTaskBean.setUserId(userId);
-				
 				
 				// listにbeanを入れる
 				taskList.add(userStatusCategoryTaskBean);

@@ -2,7 +2,7 @@ package model.entity;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
-import java.util.Date;
+import java.time.LocalDate;
 
 public class UserStatusCategoryTaskBean implements Serializable {
 
@@ -34,7 +34,7 @@ public class UserStatusCategoryTaskBean implements Serializable {
 	private String taskName;
 
 	//	期限
-	private Date limitDate;
+	private LocalDate limitDate;
 
 	//	メモ
 	private String memo;
@@ -122,11 +122,11 @@ public class UserStatusCategoryTaskBean implements Serializable {
 		this.taskName = taskName;
 	}
 
-	public Date getLimitDate() {
+	public LocalDate getLimitDate() {
 		return limitDate;
 	}
 
-	public void setLimitDate(Date limitDate) {
+	public void setLimitDate(LocalDate limitDate) {
 		this.limitDate = limitDate;
 	}
 
