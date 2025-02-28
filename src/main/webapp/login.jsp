@@ -8,7 +8,7 @@
 </head>
 <body>
 
-	<h1>ログイン画面</h1>
+	<h1>ログイン画面奥川</h1>
 	<hr>
 	<%--　エラーメッセージ出力 --%>
 		<% String message = (String)request.getAttribute("message"); 
