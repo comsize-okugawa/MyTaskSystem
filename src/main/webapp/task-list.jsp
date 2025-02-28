@@ -17,7 +17,7 @@ List<UserStatusCategoryTaskBean> taskList = (List<UserStatusCategoryTaskBean>)se
 <table border>
 
 <%
-for(list : taskList){
+for(UserStatusCategoryTaskBean list : taskList){
 %>
 <tr>
 <th>タスク名</th>
