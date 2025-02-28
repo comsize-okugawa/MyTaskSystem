@@ -1,6 +1,7 @@
 package servlet;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import model.dao.DeleteDAO;
 import model.entity.TaskBean;
+import model.entity.UserStatusCategoryTaskBean;
 
 /**
  * Servlet implementation class TaskDeleteServlet
@@ -42,15 +44,13 @@ public class TaskDeleteServlet extends HttpServlet {
 		
 		TaskBean bean = new TaskBean();
 		DeleteDAO dao = new DeleteDAO();
-		bean.setTaskId(8);
+		bean.setTaskId(11);
+		
+		
+		List<UserStatusCategoryTaskBean>listTask = dao.DeleteCheck(bean);
+		request.setAttribute("list", listTask);
 		
 		int res = dao.Delete(bean);
-		
-		if(res == 0) {
-			RequestDispatcher rd = request.getRequestDispatcher("task-delete-failure.jsp");
-
-			rd.forward(request, response);
-		}
 		request.setAttribute("res", res);
 		
 		RequestDispatcher rd = request.getRequestDispatcher("task-delete-success.jsp");
