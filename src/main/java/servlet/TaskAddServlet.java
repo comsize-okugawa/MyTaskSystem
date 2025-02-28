@@ -54,7 +54,10 @@ public class TaskAddServlet extends HttpServlet {
 			String strCategoryId = request.getParameter("categoryId"); // カテゴリID IDだけ送られてくる			
 				int categoryId = Integer.parseInt(strCategoryId); // 型変換
 			String strLimitDate = request.getParameter("limitDate"); // 期限
-				LocalDate limitDate = LocalDate.parse(strLimitDate); // 型変換（LocalDate型）
+				LocalDate limitDate = null; // 初期値をnullに設定
+				if (strLimitDate != null && !strLimitDate.trim().isEmpty()) {
+					limitDate = LocalDate.parse(strLimitDate); // 型変換（LocalDate型）
+				}
 			String userId = request.getParameter("userId"); // ユーザID IDだけ送られてくる
 			String statusCode = request.getParameter("statusCode"); // ステータスコード Codeだけ送られてくる
 			String memo = request.getParameter("memo"); // メモ
