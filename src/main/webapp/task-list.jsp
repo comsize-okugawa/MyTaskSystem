@@ -9,7 +9,7 @@
 <body>
 
 <%
-List<UserStatusCategoryTaskBean> taskList = (List<UserStatusCategoryTaskBean>) session.getAttribute("taskList");
+List<UserStatusCategoryTaskBean> taskList = (List<UserStatusCategoryTaskBean>)session.getAttribute("taskList");
 %>
 
 <h1>タスク一覧表示画面</h1>
@@ -31,7 +31,7 @@ for(list : taskList){
 </tr>
 <tr>
 <td><%=list.getTaskName()%></td>
-<td><%=list.getTaskName()%></td>
+<td><%=list.getCategoryName()%></td>
 <td><%=list.getLimitDate()%></td>
 <td><%=list.getUserName()%></td>
 <td><%=list.getStatusName()%></td>
