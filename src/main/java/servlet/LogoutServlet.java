@@ -34,10 +34,17 @@ public class LogoutServlet extends HttpServlet {
 	    response.setHeader("Pragma", "no-cache");
 	    response.setDateHeader("Expires", 0);
 	    
+//	    セッションがあれば取得
 		HttpSession session = request.getSession(false);
 
-        if (session != null) {
-            session.invalidate(); // セッションを無効化
+        if (session != null && session.getAttribute("userId") != null) {
+        	
+        	// セッションを無効化
+            session.invalidate();
+            
+            //新規セッションを作成して上書き
+            HttpSession newSession = request.getSession(true);
+            
             request.setAttribute("message", "ログアウトしました");
         } else {
             request.setAttribute("message", "ログアウト済です");

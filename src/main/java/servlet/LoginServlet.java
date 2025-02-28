@@ -94,6 +94,7 @@ public class LoginServlet extends HttpServlet {
 //					成功時menu.jspへ
 					url = "menu.jsp";
 					HttpSession session = request.getSession();
+//					セッション判定のためuserIdをセッションへ
 					session.setAttribute("userId",userId);
 			
 				} else {
