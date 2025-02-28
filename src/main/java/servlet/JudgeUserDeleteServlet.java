@@ -2,11 +2,15 @@ package servlet;
 
 import java.io.IOException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import model.dao.JudgeUserDAO;
+import model.entity.TaskBean;
 
 /**
  * Servlet implementation class JudgeUserDeleteServlet
@@ -27,11 +31,32 @@ public class JudgeUserDeleteServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//タスク一覧から貰う
-		request.getParameter("userId");
-		request.getParameter("taskId");
+		String url = "judge-user-failure.jsp";
 		
-		//
+		JudgeUserDAO dao = new JudgeUserDAO();
+		
+		TaskBean bean = new TaskBean();
+		
+		//本番機能
+//		request.getParameter("userId");
+//		request.getParameter("taskId");
+		
+		String userId = "abc123";
+		int taskId = 15;
+		
+		bean.setUserId(userId);
+		bean.setTaskId(taskId);
+		
+		int res = dao.UserCheck(bean);
+		
+		if(res == 1) {
+			url = "task-delete-confirmation.jsp";
+		}
+		
+		RequestDispatcher rd = request.getRequestDispatcher(url);
+
+		rd.forward(request, response);
+		
 		
 		
 	}
