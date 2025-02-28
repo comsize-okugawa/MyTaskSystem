@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import model.entity.CategoryBean;
@@ -15,6 +16,8 @@ import model.entity.UserBean;
 
 /* タスク登録のために必要な処理や情報の獲得を行うクラス */
 public class TaskAddEditDAO {
+	
+	Date date = new Date();
 
 	// タスク登録する処理（t_taskに登録する）
 	public int taskAdd(TaskBean taskBean) throws ClassNotFoundException, SQLException {
@@ -239,7 +242,13 @@ public class TaskAddEditDAO {
 				String taskName = res.getString("task_name");
 				int categoryId = res.getInt("category_id");
 				String strLimitDate = res.getString("limit_date");
-				LocalDate limitDate = LocalDate.parse(strLimitDate); // 型変換（Javaの処理の時はLocalDate型にする)
+					LocalDate limitDate = null; // 初期値をnullに設定
+					if (strLimitDate != null && !strLimitDate.trim().isEmpty()) {
+						limitDate = LocalDate.parse(strLimitDate); // 型変換（LocalDate型）
+					}else {
+						limitDate = LocalDate.of(2025,01,01);	//	期限がnullの場合、2025-01-01を代入
+					}
+					
 				String userId = res.getString("user_id");
 				String statusCode = res.getString("status_code");
 				String memo = res.getString("memo");
@@ -251,6 +260,7 @@ public class TaskAddEditDAO {
 				taskBeanBefore.setUserId(userId);
 				taskBeanBefore.setStatusCode(statusCode);
 				taskBeanBefore.setMemo(memo);
+				
 			}
 
 		}

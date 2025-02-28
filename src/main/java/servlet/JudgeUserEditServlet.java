@@ -58,10 +58,8 @@ public class JudgeUserEditServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		String loginUserId = (String) session.getAttribute("userId");
 		String taskUserId = request.getParameter("taskUserId"); 
-		
-		System.out.println("taskId:" + taskId);
-		System.out.println("taskUserId" + taskUserId);
 
+		// ログイン中のユーザのuserIdと選択したタスクのuserIdが一致するか検証
 		try {
 			if (loginUserId.equals(taskUserId)) {
 				
@@ -83,7 +81,6 @@ public class JudgeUserEditServlet extends HttpServlet {
 
 				// m_status
 				List<StatusBean> statusList = dao.AllSelectStatus();
-
 				session.setAttribute("statusList", statusList);
 
 				// 編集画面に遷移
@@ -91,7 +88,7 @@ public class JudgeUserEditServlet extends HttpServlet {
 
 			} else {
 				// エラー画面に遷移
-				request.getRequestDispatcher("task-edit-error.jsp").forward(request, response);
+				request.getRequestDispatcher("task-edit-failure.jsp").forward(request, response);
 			}
 
 		} catch (ClassNotFoundException | SQLException e) {

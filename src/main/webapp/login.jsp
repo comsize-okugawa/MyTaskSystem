@@ -25,8 +25,6 @@
 		<form action="LoginServlet" method="POST">
 
 			<table>
-
-
 				<tr>
 					<th>ユーザID</th>
 					<td><input type="text" name= "userId" ></td>

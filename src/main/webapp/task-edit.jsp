@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" import="java.util.List, model.entity.CategoryBean, model.entity.StatusBean, model.entity.UserBean, model.dao.TaskAddEditDAO, model.entity.TaskBean"%>
+	pageEncoding="UTF-8" import="java.util.List, model.entity.CategoryBean, model.entity.StatusBean, model.entity.UserBean, model.dao.TaskAddEditDAO, model.entity.TaskBean,java.util.Date, java.text.SimpleDateFormat"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -69,7 +69,12 @@
 				</select></td>
 
 				<%-- 期限 --%>
-				<td><input type="date" name="limitDate" value="<%=taskBeanBefore.getLimitDate()%>"></td>
+				<%!
+				Date dateToday = new Date();
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+			    String today = sdf.format(dateToday);
+				%>
+				<td><input type="date" name="limitDate" value="<%=taskBeanBefore.getLimitDate()%>" min="<%=today%>"></td>
 
 				<%-- 担当者情報 m_user --%>
 				<td><select name="userId">

@@ -19,7 +19,11 @@
 
 	<%-- セッションスコープを無効化（taskId, 各Bean --%>
 	<%
-		session.invalidate();
+		session.removeAttribute("taskId");
+		session.removeAttribute("statusBean");
+		session.removeAttribute("userBean");
+		session.removeAttribute("categoryBean");
+		session.removeAttribute("taskBean");
 	%>
 
 </body>
