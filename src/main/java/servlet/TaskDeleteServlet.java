@@ -1,6 +1,7 @@
 package servlet;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -47,7 +48,13 @@ public class TaskDeleteServlet extends HttpServlet {
 		bean.setTaskId(11);
 		
 		
-		List<UserStatusCategoryTaskBean>listTask = dao.DeleteCheck(bean);
+		List<UserStatusCategoryTaskBean> listTask = null;
+		try {
+			listTask = dao.DeleteChuckDAO(bean);
+		} catch (ClassNotFoundException | SQLException e) {
+			// TODO 自動生成された catch ブロック
+			e.printStackTrace();
+		}
 		request.setAttribute("list", listTask);
 		
 		int res = dao.Delete(bean);
