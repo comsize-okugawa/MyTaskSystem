@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"
     import="java.util.List, java.util.ArrayList, model.entity.UserStatusCategoryTaskBean"%>
 <!DOCTYPE html>
+<% List<UserStatusCategoryTaskBean> list = (List) request.getAttribute("list");%>
 <html>
 <head>
 <meta charset="UTF-8">
