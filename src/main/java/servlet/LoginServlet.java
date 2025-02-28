@@ -93,6 +93,8 @@ public class LoginServlet extends HttpServlet {
 				if(userBean != null) {
 //					成功時menu.jspへ
 					url = "menu.jsp";
+					HttpSession session = request.getSession();
+					session.setAttribute("userId",userId);
 			
 				} else {
 					message = "ログイン認証に失敗しました";

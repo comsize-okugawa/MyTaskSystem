@@ -36,8 +36,19 @@ for(UserStatusCategoryTaskBean list : taskList){
 <td><%=list.getUserName()%></td>
 <td><%=list.getStatusName()%></td>
 <td><%=list.getMemo()%></td>
-<td><form action="JudgeUserDeleteServlet"><input type="button" name="delete" value="削除"></form></td>
-<td><form action="JudgeUserEditServlet"><input type="button"  name="edit" value="編集"></form></td>
+<td>
+	<form action="JudgeUserDeleteServlet" method="POST">
+		<input type="hidden" name="taskId" value="<%=list.getTaskId()%>">
+		<input type="submit" name="delete" value="削除">
+	</form>
+</td>
+<td>
+	<form action="judge-user-edit-servlet" method="POST">
+		<input type="hidden" name="taskUserId" value="<%=list.getUserId()%>">
+		<input type="hidden" name="taskId" value="<%=list.getTaskId()%>">
+		<input type="submit"  name="edit" value="編集">
+	</form>
+</td>
 </tr>
 
 <%

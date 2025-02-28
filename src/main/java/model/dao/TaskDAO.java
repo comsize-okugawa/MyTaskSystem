@@ -29,7 +29,7 @@ public class TaskDAO {
 		List<UserStatusCategoryTaskBean> taskList = new ArrayList<UserStatusCategoryTaskBean>();
 
 		// sql文
-		String sql = "SELECT t.task_name, c.category_name, t.limit_date, u.user_name, s.status_name, t.memo FROM t_task t JOIN m_category c ON t.category_id = c.category_id JOIN m_status s ON t.status_code = s.status_code JOIN m_user u ON t.user_id = u.user_id;";
+		String sql = "SELECT t.task_name, c.category_name, t.limit_date, u.user_name, s.status_name, t.memo, t.task_id, u.user_id FROM t_task t JOIN m_category c ON t.category_id = c.category_id JOIN m_status s ON t.status_code = s.status_code JOIN m_user u ON t.user_id = u.user_id;";
 
 		// DB接続とSQL文の設定
 		try (Connection con = ConnectionManager.getConnection();
@@ -48,6 +48,9 @@ public class TaskDAO {
 				String statusName = res.getString("status_name");
 				String memo = res.getString("memo");
 				
+				int taskId = res.getInt("task_id");
+				String userId = res.getString("user_id");
+				
 				// beanインスタンス化
 				UserStatusCategoryTaskBean userStatusCategoryTaskBean = new UserStatusCategoryTaskBean();
 
@@ -58,6 +61,9 @@ public class TaskDAO {
 				userStatusCategoryTaskBean.setUserName(userName);
 				userStatusCategoryTaskBean.setStatusName(statusName);
 				userStatusCategoryTaskBean.setMemo(memo);
+				
+				userStatusCategoryTaskBean.setTaskId(taskId);
+				userStatusCategoryTaskBean.setUserId(userId);
 				
 				
 				// listにbeanを入れる

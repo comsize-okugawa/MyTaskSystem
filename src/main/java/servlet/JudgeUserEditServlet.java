@@ -47,23 +47,25 @@ public class JudgeUserEditServlet extends HttpServlet {
 			throws ServletException, IOException {
 
 		// 選択したタスクのtaskIdを取得し、
-		int taskId = 1; // 仮
-
-		// 選択したタスクのuserIdを取得
-
+		String strTaskId = request.getParameter("taskId");
+		int taskId = Integer.parseInt(strTaskId);
+		
 		/* ユーザー認証
 		 * ログイン中のユーザのuserIdと選択したタスクのuserIdが一致するか検証
 		 * 一致する場合：編集画面に必要な情報を取得し、編集画面に遷移
 		 * 一致しない場合：エラー画面に遷移
 		 * */
-		String loginUserId = "okugawa"; // 仮
-		String taskUserId = "okugawa"; // 仮
+		HttpSession session = request.getSession();
+		String loginUserId = (String) session.getAttribute("userId");
+		String taskUserId = request.getParameter("taskUserId"); 
+		
+		System.out.println("taskId:" + taskId);
+		System.out.println("taskUserId" + taskUserId);
 
 		try {
 			if (loginUserId.equals(taskUserId)) {
 				
 				// taskIdをセッションスコープに格納
-				HttpSession session = request.getSession();
 				session.setAttribute("taskId", taskId);
 				
 				// TaskAddDAOのインスタンス化
