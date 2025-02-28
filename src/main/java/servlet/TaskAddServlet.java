@@ -57,6 +57,8 @@ public class TaskAddServlet extends HttpServlet {
 				LocalDate limitDate = null; // 初期値をnullに設定
 				if (strLimitDate != null && !strLimitDate.trim().isEmpty()) {
 					limitDate = LocalDate.parse(strLimitDate); // 型変換（LocalDate型）
+				}else {
+					limitDate = LocalDate.of(0000,00,00);	//	期限がnullの場合、0000-00-00を代入
 				}
 			String userId = request.getParameter("userId"); // ユーザID IDだけ送られてくる
 			String statusCode = request.getParameter("statusCode"); // ステータスコード Codeだけ送られてくる
