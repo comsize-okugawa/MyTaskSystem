@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import model.dao.UserDAO;
 import model.entity.UserBean;
@@ -32,6 +33,18 @@ public class LoginServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+	        // キャッシュを無効化するヘッダーを追加
+	        response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+	        response.setHeader("Pragma", "no-cache");
+	        response.setDateHeader("Expires", 0);
+	        
+	        HttpSession session = request.getSession(false);
+
+	        if (session == null || session.getAttribute("userId") == null) {
+	            response.sendRedirect("login.jsp"); // ログインページへリダイレクト
+	            return;
+	        }
 	}
 
 	/**

@@ -5,6 +5,12 @@
 <head>
 <meta charset="UTF-8">
 <title>ログアウト画面</title>
+<%
+    // キャッシュを無効化
+    response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+    response.setHeader("Pragma", "no-cache");
+    response.setDateHeader("Expires", 0);
+%>
 </head>
 <body>
 <h1>ログアウト画面</h1>
@@ -13,8 +19,7 @@
 	if(message != null){
 %>
 
-<%= message
-%>
+<%= message	%>
 
 <% 
 	} else {

@@ -21,7 +21,7 @@
 	</form><br>
 
 	<%-- form ログアウト --%>
-	<form action="LogoutServlet" method="POST">
+	<form action="LogoutServlet" method="GET">
 		<input type="submit" value="ログアウト">
 	</form>
 	
