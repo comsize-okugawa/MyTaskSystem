@@ -1,0 +1,141 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8" import="java.util.List, model.entity.CategoryBean, model.entity.StatusBean, model.entity.UserBean, model.dao.TaskAddEditDAO, model.entity.TaskBean,java.util.Date, java.text.SimpleDateFormat"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>タスク編集画面</title>
+</head>
+<body>
+
+	<%-- 前準備 --%>
+	<%
+	// 各beanの取得
+	List<UserBean> userList = (List<UserBean>) session.getAttribute("userList");
+	List<CategoryBean> categoryList = (List<CategoryBean>) session.getAttribute("categoryList");
+	List<StatusBean> statusList = (List<StatusBean>) session.getAttribute("statusList");
+	// taskIdの取得
+	Integer taskId = (Integer) session.getAttribute("taskId");
+	// taskIdをもとにレコードを取得
+	TaskAddEditDAO taskAddEditDao = new TaskAddEditDAO();
+	TaskBean taskBeanBefore = taskAddEditDao.SelectTask(taskId);
+	%>
+
+	<h1>タスク編集画面</h1>
+	<hr>
+	<h2>編集するタスクの情報を入力して下さい</h2>
+	<br>
+
+	<%-- form --%>
+	<form action="task-edit-servlet" method="post">
+
+		<%-- table --%>
+		<table border=1>
+
+			<%-- 登録項目 --%>
+			<tr>
+				<th>タスク名</th>
+				<th>カテゴリ情報</th>
+				<th>期限</th>
+				<th>担当者情報</th>
+				<th>ステータス情報</th>
+				<th>メモ</th>
+			</tr>
+
+			<%-- 入力欄 --%>
+			<tr>
+				<%-- タスク名 --%>
+				<td><input type="text" name="taskName" value="<%=taskBeanBefore.getTaskName()%>"></td>
+
+				<%-- カテゴリ情報 m_category --%>
+				<td><select name="categoryId">
+						<% 
+						for (CategoryBean list : categoryList) { 
+							if(list.getCategoryId() == taskBeanBefore.getCategoryId()){
+						%>
+							<option value="<%=list.getCategoryId()%>" selected>
+								<%=list.getCategoryName()%>
+							</option>
+						<% 
+							}else{
+						%>
+							<option value="<%=list.getCategoryId()%>">
+								<%=list.getCategoryName()%>
+							</option>
+						<% 
+							} 
+						}
+						%>
+				</select></td>
+
+				<%-- 期限 --%>
+				<%!
+				Date dateToday = new Date();
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+			    String today = sdf.format(dateToday);
+				%>
+				<td><input type="date" name="limitDate" value="<%=taskBeanBefore.getLimitDate()%>" min="<%=today%>"></td>
+
+				<%-- 担当者情報 m_user --%>
+				<td><select name="userId">
+						<% 
+						for (UserBean list : userList) { 
+							if(list.getUserId() == taskBeanBefore.getUserId()){
+						%>
+							<option value="<%=list.getUserId()%>" selected>
+								<%=list.getUserName()%>
+							</option>
+						<%
+							}else{
+						%>
+							<option value="<%=list.getUserId()%>">
+								<%=list.getUserName()%>
+							</option>
+						<% 
+							}
+						}
+						%>
+				</select></td>
+
+				<%-- ステータス情報 m_status --%>
+				<td><select name="statusCode">
+						<% 
+						for (StatusBean list : statusList) { 
+							if(list.getStatusCode().equals(taskBeanBefore.getStatusCode())){
+						%>
+							<option value="<%=list.getStatusCode()%>" selected>
+								<%=list.getStatusName()%>
+							</option>
+						<%
+							}else{
+						%>
+							<option value="<%=list.getStatusCode()%>" selected>
+								<%=list.getStatusName()%>
+							</option>
+						<% 
+							}
+						}
+						%>
+				</select></td>
+
+				<%-- メモ --%>
+				<td>
+					<textarea name="memo"><%=taskBeanBefore.getMemo()%></textarea>
+				</td>
+			</tr>
+
+		</table>
+		<br>
+
+		<%-- table 送信/リセットボタン --%>
+		<table>
+			<tr>
+				<th><input type="submit" value="編集"></th>
+				<th><input type="reset" value="リセット"></th>
+				<th>
+			</tr>
+		</table>
+	</form>
+
+</body>
+</html>
